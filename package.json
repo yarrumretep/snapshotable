@@ -7,9 +7,10 @@
     "test": "test"
   },
   "dependencies": {
-    "expect": "^22.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+        "expect": "^22.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -63,6 +63,15 @@ library Snapshotable {
     return toValue(self.snapshots[index]);
   }
 
+  function scanForKeyBefore(Uint storage self, uint maxKey, uint start) internal view returns (uint val, uint index) {
+    uint end = count(self);
+    index = start;
+    while (index + 1 < end && keyAt(self, index + 1) <= maxKey) {
+      index++;
+    }
+    return (valueAt(self, index), index);
+  }
+
   function reset(Uint storage self, uint key) internal {
     if (self.snapshots.length > 0) {
       self.snapshots[0] = entry(key, self.snapshots[self.snapshots.length-1]);

@@ -73,10 +73,12 @@ library Snapshotable {
   }
 
   function reset(Uint storage self, uint key) internal {
-    if (self.snapshots.length > 0) {
-      self.snapshots[0] = entry(key, self.snapshots[self.snapshots.length-1]);
-      self.snapshots.length = 1;
-    }
+    reset(self, key, lastValue(self));
+  }
+
+  function reset(Uint storage self, uint key, uint value) internal {
+    self.snapshots.length = 1;
+    self.snapshots[0] = entry(key, value);
   }
 
   function increment(Uint storage self, uint key, uint incr) internal {
